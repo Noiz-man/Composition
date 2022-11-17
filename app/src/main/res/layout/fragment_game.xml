@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.GameFragment">
+
+    <TextView
+        android:id="@+id/tv_Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        android:textSize="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Sum"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="144dp"
+        android:background="@drawable/oval"
+        android:gravity="center"
+        android:text="@string/sum"
+        android:textColor="@color/white"
+        android:textSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Time" />
+
+    <TextView
+        android:id="@+id/tv_Summand"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:text="@string/sumand"
+        style="@style/QuestionTextStyle"
+        android:background="@android:color/holo_green_dark"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_Addend"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Sum" />
+
+    <TextView
+        android:id="@+id/tv_Addend"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:text="?"
+        style="@style/QuestionTextStyle"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_Summand"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Sum" />
+
+    <TextView
+        android:id="@+id/tv_CurrentResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/current_result"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Summand"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_CurrentResult"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_answer1"
+                style="@style/AnswersTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_green_dark"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/one_answer" />
+
+            <TextView
+                android:id="@+id/tv_answer2"
+                style="@style/AnswersTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_light"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/two_answer" />
+
+            <TextView
+                android:id="@+id/tv_answer3"
+                style="@style/AnswersTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_orange_light"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/three_answer" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_answer4"
+                style="@style/AnswersTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_light"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/four_answer" />
+
+            <TextView
+                android:id="@+id/tv_answer5"
+                style="@style/AnswersTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_purple"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/five_answer" />
+
+            <TextView
+                android:id="@+id/tv_answer6"
+                style="@style/AnswersTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_dark"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/six_answer" />
+        </TableRow>
+
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

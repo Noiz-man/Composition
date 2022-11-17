@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Composition</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rules">Правила игры: перед Вами три фигуры, две снизу и одна сверху, в двух из них будут числа. Необходимо чтобы сумма чисел в двух нихних фигурах была равна числу в верхней фигуре, для этого нужно вставить недостающее число.
+
+Пример: В верхнем круге число 7, а в одном изнижних прямоугольников знак вопроса, а в другом число 4, значит на место вопросительного знака должно быть число 3, потому что 3+4=7</string>
+    <string name="choose_level">Выберите уровень:</string>
+    <string name="test">Тестовый</string>
+    <string name="easy">Легкий</string>
+    <string name="middle">Средний</string>
+    <string name="hard">Сложный</string>
+    <string name="time">00:00</string>
+    <string name="sum">7</string>
+    <string name="sumand">3</string>
+    <string name="current_result">Правильных ответов ХХ (минимум: хх)</string>
+    <string name="one_answer">1</string>
+    <string name="two_answer">2</string>
+    <string name="three_answer">3</string>
+    <string name="four_answer">4</string>
+    <string name="five_answer">5</string>
+    <string name="six_answer">6</string>
+    <string name="restart">попробовать снова</string>
 </resources>
