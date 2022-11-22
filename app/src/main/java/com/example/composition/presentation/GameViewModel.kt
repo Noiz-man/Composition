@@ -118,7 +118,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _question.value = generateQuestionUseCase(settings.maxSumValue)
     }
 
-    private fun chooseAnswer(answer: Int) {
+    fun chooseAnswer(answer: Int) {
         isAnswerRight(answer)
         percentOfRightAnswers()
         getQuestion()
