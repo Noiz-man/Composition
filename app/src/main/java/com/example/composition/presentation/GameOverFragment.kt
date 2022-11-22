@@ -48,7 +48,9 @@ class GameOverFragment : Fragment() {
     }
 
     private fun parseArgs() {
-        results = arguments?.getSerializable(KEY_RESULTS) as Results
+        requireArguments().getParcelable<Results>(KEY_RESULTS)?.let {
+            results = it
+        }
     }
 
     override fun onDestroyView() {
@@ -67,7 +69,7 @@ class GameOverFragment : Fragment() {
         fun newInstance(results: Results): GameOverFragment {
             return GameOverFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_RESULTS, results)
+                    putParcelable(KEY_RESULTS, results)
                 }
             }
         }
