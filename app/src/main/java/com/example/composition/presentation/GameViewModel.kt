@@ -56,7 +56,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _gameResult = MutableLiveData<Results>()
     val gameResult: LiveData<Results>
-    get() = _gameResult
+        get() = _gameResult
 
 
     fun startGame(level: Level) {

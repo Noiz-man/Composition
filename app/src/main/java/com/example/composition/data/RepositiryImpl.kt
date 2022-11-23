@@ -14,25 +14,25 @@ object RepositiryImpl: GameRepository {
             Level.TEST -> Settings(
                 10,
                 4,
-            60,
+            50,
                 20
             )
             Level.EASY -> Settings(
                 20,
                 8,
-            60,
+            70,
                 30
             )
             Level.NORMAL -> Settings(
                 30,
                 10,
-            60,
+            80,
                 40
             )
             Level.HARD -> Settings(
                 100,
                 20,
-            60,
+            90,
                 60
             )
         }
