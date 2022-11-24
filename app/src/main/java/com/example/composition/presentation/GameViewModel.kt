@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.composition.R
 import com.example.composition.data.RepositiryImpl
 import com.example.composition.domain.Entity.Level
@@ -14,11 +15,10 @@ import com.example.composition.domain.Entity.Settings
 import com.example.composition.domain.UseCases.GenerateQuestionUseCase
 import com.example.composition.domain.UseCases.GetSettingsUseCase
 
-class GameViewModel(application: Application) : AndroidViewModel(application) {
+class GameViewModel(private val level: Level,
+                    private val application: Application) : ViewModel() {
 
     private lateinit var settings: Settings
-    private lateinit var level: Level
-    private val context = application
     private val repository = RepositiryImpl
     private val generateQuestionUseCase = GenerateQuestionUseCase(repository)
     private val getSettingsUseCase = GetSettingsUseCase(repository)
@@ -58,9 +58,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val gameResult: LiveData<Results>
         get() = _gameResult
 
+    init {
+        startGame()
+    }
 
-    fun startGame(level: Level) {
-        getGameSettings(level)
+    private fun startGame() {
+        getGameSettings()
         startTimer()
         getQuestion()
     }
@@ -69,14 +72,13 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val minCountAnswers = settings.minCountOfRightAnswers
         val percent = ((countOfRightAnswers / countOfQuestions.toDouble()) * PERCENTS).toInt()
         _percentOfRightAnswers.value = percent
-        _progresAnswers.value = String.format(context.resources.getString(
+        _progresAnswers.value = String.format(application.resources.getString(
             R.string.progresACountAnswers), countOfRightAnswers, minCountAnswers)
         _enoughCountOfRightAnswers.value = countOfRightAnswers >= minCountAnswers
         _enoughPercentOfRightAnswers.value = percent >= settings.minPercentOfRightAnswers
     }
 
-    private fun getGameSettings(level: Level) {
-        this.level = level
+    private fun getGameSettings() {
         this.settings = getSettingsUseCase(level)
         _minPercent.value = settings.minPercentOfRightAnswers
     }

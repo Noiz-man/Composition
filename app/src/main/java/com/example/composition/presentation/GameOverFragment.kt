@@ -16,11 +16,6 @@ import com.example.composition.domain.Entity.Results
 import com.example.composition.domain.Entity.Settings
 
 class GameOverFragment : Fragment() {
-    private val viewModel by lazy {
-        ViewModelProvider(this,
-        ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().
-        application))[GameViewModel::class.java]
-    }
 
     private lateinit var results: Results
 
@@ -59,7 +54,6 @@ class GameOverFragment : Fragment() {
     }
 
     private fun setOnViews() {
-        val percent = viewModel.percentOfRightAnswers.value?.toInt()
         with(binding) {
             tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
                 results.settings.minCountOfRightAnswers)

@@ -21,8 +21,7 @@ class GameFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        )[GameViewModel::class.java]
+            ViewModelFactory(level, requireActivity().application))[GameViewModel::class.java]
     }
 
     private lateinit var level: Level
@@ -53,7 +52,6 @@ class GameFragment : Fragment() {
         textProgress()
         progressBar()
         endGame()
-        viewModel.startGame(level)
 
         with(binding) {
             tvAnswer1.setOnClickListener {
