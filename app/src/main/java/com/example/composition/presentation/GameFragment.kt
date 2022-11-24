@@ -26,7 +26,6 @@ class GameFragment : Fragment() {
     }
 
     private lateinit var level: Level
-    private var answer = 0
 
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding

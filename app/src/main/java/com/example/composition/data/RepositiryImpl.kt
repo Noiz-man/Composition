@@ -15,7 +15,7 @@ object RepositiryImpl: GameRepository {
                 10,
                 4,
             50,
-                20
+                5
             )
             Level.EASY -> Settings(
                 20,

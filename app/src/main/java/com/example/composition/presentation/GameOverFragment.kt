@@ -8,12 +8,20 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameOverBinding
 import com.example.composition.domain.Entity.Results
 import com.example.composition.domain.Entity.Settings
 
 class GameOverFragment : Fragment() {
+    private val viewModel by lazy {
+        ViewModelProvider(this,
+        ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().
+        application))[GameViewModel::class.java]
+    }
+
     private lateinit var results: Results
 
     private var _binding: FragmentGameOverBinding? = null
@@ -45,6 +53,32 @@ class GameOverFragment : Fragment() {
         binding.btnRestart.setOnClickListener {
             retryGame()
         }
+
+        setOnViews()
+
+    }
+
+    private fun setOnViews() {
+        val percent = viewModel.percentOfRightAnswers.value?.toInt()
+        with(binding) {
+            tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
+                results.settings.minCountOfRightAnswers)
+            ivGameOver.setImageResource(if (results.winner) {
+                R.drawable.goodsmile
+            } else R.drawable.badsmile)
+            tvRightAswers.text = String.format(getString(R.string.CountOfRightAnswers),
+                results.countOfRightAnswers)
+            tvNeedPercent.text = String.format(getString(R.string.NeedPercentsOfRightAnswers),
+                results.settings.minPercentOfRightAnswers)
+            tvRightPercent.text = String.format(getString(R.string.PercentOfRightAnswers),
+                getPecentage())
+        }
+
+    }
+
+    private fun getPecentage():Int {
+        return ((results.countOfRightAnswers / results.countOfQuestions.toDouble()) * 100).toInt()
+
     }
 
     private fun parseArgs() {

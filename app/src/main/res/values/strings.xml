@@ -22,4 +22,8 @@
     <string name="six_answer">6</string>
     <string name="restart">попробовать снова</string>
     <string name="progresACountAnswers">Количество правильных ответов %s (необходимо: %s)</string>
+    <string name="NeedCountOfRightAnswers">Необходимое количество правильных ответов %s</string>
+    <string name="CountOfRightAnswers">Количество правильных ответов %s</string>
+    <string name="NeedPercentsOfRightAnswers">Необходимый процент правильных ответов %s</string>
+    <string name="PercentOfRightAnswers">Процент правильных ответов %s</string>
 </resources>
