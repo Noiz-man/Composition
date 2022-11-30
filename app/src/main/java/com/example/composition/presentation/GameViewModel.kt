@@ -2,16 +2,15 @@ package com.example.composition.presentation
 
 import android.app.Application
 import android.os.CountDownTimer
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.composition.R
 import com.example.composition.data.RepositiryImpl
-import com.example.composition.domain.Entity.Level
-import com.example.composition.domain.Entity.Questions
-import com.example.composition.domain.Entity.Results
-import com.example.composition.domain.Entity.Settings
+import com.example.composition.domain.entity.Level
+import com.example.composition.domain.entity.Questions
+import com.example.composition.domain.entity.Results
+import com.example.composition.domain.entity.Settings
 import com.example.composition.domain.UseCases.GenerateQuestionUseCase
 import com.example.composition.domain.UseCases.GetSettingsUseCase
 

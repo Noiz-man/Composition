@@ -1,20 +1,17 @@
 package com.example.composition.presentation
 
 import android.content.res.ColorStateList
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameBinding
-import com.example.composition.domain.Entity.Level
-import com.example.composition.domain.Entity.Results
-import com.example.composition.domain.Entity.Settings
+import com.example.composition.domain.entity.Level
+import com.example.composition.domain.entity.Results
 
 class GameFragment : Fragment() {
 

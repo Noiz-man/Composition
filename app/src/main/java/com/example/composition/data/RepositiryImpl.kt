@@ -1,11 +1,9 @@
 package com.example.composition.data
 
-import com.example.composition.domain.Entity.Level
-import com.example.composition.domain.Entity.Questions
-import com.example.composition.domain.Entity.Settings
+import com.example.composition.domain.entity.Level
+import com.example.composition.domain.entity.Questions
+import com.example.composition.domain.entity.Settings
 import com.example.composition.domain.Repository.GameRepository
-import com.example.composition.domain.UseCases.GenerateQuestionUseCase
-import com.example.composition.domain.UseCases.GetSettingsUseCase
 import kotlin.random.Random
 
 object RepositiryImpl: GameRepository {

@@ -6,14 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameOverBinding
-import com.example.composition.domain.Entity.Results
-import com.example.composition.domain.Entity.Settings
+import com.example.composition.domain.entity.Results
 
 class GameOverFragment : Fragment() {
 

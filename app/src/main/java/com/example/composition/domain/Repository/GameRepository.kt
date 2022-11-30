@@ -1,8 +1,8 @@
 package com.example.composition.domain.Repository
 
-import com.example.composition.domain.Entity.Level
-import com.example.composition.domain.Entity.Questions
-import com.example.composition.domain.Entity.Settings
+import com.example.composition.domain.entity.Level
+import com.example.composition.domain.entity.Questions
+import com.example.composition.domain.entity.Settings
 
 interface GameRepository {
 

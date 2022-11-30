@@ -1,4 +1,4 @@
-package com.example.composition.domain.Entity
+package com.example.composition.domain.entity
 
 data class Questions (
     val sum: Int,

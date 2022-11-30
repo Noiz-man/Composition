@@ -1,6 +1,6 @@
 package com.example.composition.domain.UseCases
 
-import com.example.composition.domain.Entity.Questions
+import com.example.composition.domain.entity.Questions
 import com.example.composition.domain.Repository.GameRepository
 
 class GenerateQuestionUseCase(
