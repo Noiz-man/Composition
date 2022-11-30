@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameBinding
 import com.example.composition.domain.entity.Level
@@ -15,23 +17,17 @@ import com.example.composition.domain.entity.Results
 
 class GameFragment : Fragment() {
 
+    private val args by navArgs<GameFragmentArgs>()
+
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            ViewModelFactory(level, requireActivity().application))[GameViewModel::class.java]
+            ViewModelFactory(args.level, requireActivity().application))[GameViewModel::class.java]
     }
-
-    private lateinit var level: Level
 
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding = null")
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,21 +69,13 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameOver(results: Results) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, GameOverFragment.newInstance(results))
-            .addToBackStack(null)
-            .commit()
+        findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment(
+            results))
     }
 
     private fun endGame() {
         viewModel.gameResult.observe(viewLifecycleOwner) {
             launchGameOver(it)
-        }
-    }
-
-    private fun parseArgs() {
-        requireArguments().getParcelable<Level>(KEY_LEVEL)?.let {
-            level = it
         }
     }
 
