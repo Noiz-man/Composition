@@ -4,9 +4,12 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Results (
+data class Results(
     val winner: Boolean,
     val countOfRightAnswers: Int,
     val countOfQuestions: Int,
-    val settings: Settings
-        ) : Parcelable
+    val settings: Settings,
+) : Parcelable {
+    val countOfRightAnswersString: String
+        get() = countOfRightAnswers.toString()
+}

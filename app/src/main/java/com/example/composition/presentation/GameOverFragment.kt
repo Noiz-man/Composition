@@ -7,59 +7,49 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameOverBinding
 import com.example.composition.domain.entity.Results
 
 class GameOverFragment : Fragment() {
 
-    private lateinit var results: Results
+    private val args by navArgs<GameOverFragmentArgs>()
 
     private var _binding: FragmentGameOverBinding? = null
     private val binding: FragmentGameOverBinding
         get() = _binding ?: throw RuntimeException("FragmentGameOverBinding = null")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentGameOverBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    retryGame()
-                }
-
-            })
         binding.btnRestart.setOnClickListener {
             retryGame()
         }
-
         setOnViews()
 
     }
 
     private fun setOnViews() {
+        binding.dataResults = args.results
         with(binding) {
-            tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
-                results.settings.minCountOfRightAnswers)
-            ivGameOver.setImageResource(if (results.winner) {
+//            tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
+//                args.results.settings.minCountOfRightAnswers)
+            ivGameOver.setImageResource(if (args.results.winner) {
                 R.drawable.goodsmile
             } else R.drawable.badsmile)
-            tvRightAswers.text = String.format(getString(R.string.CountOfRightAnswers),
-                results.countOfRightAnswers)
-            tvNeedPercent.text = String.format(getString(R.string.NeedPercentsOfRightAnswers),
-                results.settings.minPercentOfRightAnswers)
+//            tvRightAswers.text = String.format(getString(R.string.CountOfRightAnswers),
+//                args.results.countOfRightAnswers)
+//            tvNeedPercent.text = String.format(getString(R.string.NeedPercentsOfRightAnswers),
+//                args.results.settings.minPercentOfRightAnswers)
             tvRightPercent.text = String.format(getString(R.string.PercentOfRightAnswers),
                 getPecentage())
         }
@@ -67,14 +57,8 @@ class GameOverFragment : Fragment() {
     }
 
     private fun getPecentage():Int {
-        return ((results.countOfRightAnswers / results.countOfQuestions.toDouble()) * 100).toInt()
+        return ((args.results.countOfRightAnswers / args.results.countOfQuestions.toDouble()) * 100).toInt()
 
-    }
-
-    private fun parseArgs() {
-        requireArguments().getParcelable<Results>(KEY_RESULTS)?.let {
-            results = it
-        }
     }
 
     override fun onDestroyView() {
@@ -83,19 +67,6 @@ class GameOverFragment : Fragment() {
     }
 
     private fun retryGame() {
-        requireActivity().supportFragmentManager.popBackStack(GameFragment.NAME_GAME,
-            FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
-
-    companion object {
-        private const val KEY_RESULTS = "results"
-
-        fun newInstance(results: Results): GameOverFragment {
-            return GameOverFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_RESULTS, results)
-                }
-            }
-        }
+        findNavController().popBackStack()
     }
 }
