@@ -139,18 +139,4 @@ class GameFragment : Fragment() {
         } else android.R.color.holo_red_light
         return ContextCompat.getColor(requireContext(), color)
     }
-
-    companion object {
-
-        private const val KEY_LEVEL = "level"
-        const val NAME_GAME = "GameFragment"
-
-        fun newInstance(level: Level): GameFragment {
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_LEVEL, level)
-                }
-            }
-        }
-    }
 }

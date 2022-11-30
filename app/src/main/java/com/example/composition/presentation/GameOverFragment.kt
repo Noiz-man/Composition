@@ -39,16 +39,17 @@ class GameOverFragment : Fragment() {
     }
 
     private fun setOnViews() {
+        binding.dataResults = args.results
         with(binding) {
-            tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
-                args.results.settings.minCountOfRightAnswers)
+//            tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
+//                args.results.settings.minCountOfRightAnswers)
             ivGameOver.setImageResource(if (args.results.winner) {
                 R.drawable.goodsmile
             } else R.drawable.badsmile)
-            tvRightAswers.text = String.format(getString(R.string.CountOfRightAnswers),
-                args.results.countOfRightAnswers)
-            tvNeedPercent.text = String.format(getString(R.string.NeedPercentsOfRightAnswers),
-                args.results.settings.minPercentOfRightAnswers)
+//            tvRightAswers.text = String.format(getString(R.string.CountOfRightAnswers),
+//                args.results.countOfRightAnswers)
+//            tvNeedPercent.text = String.format(getString(R.string.NeedPercentsOfRightAnswers),
+//                args.results.settings.minPercentOfRightAnswers)
             tvRightPercent.text = String.format(getString(R.string.PercentOfRightAnswers),
                 getPecentage())
         }
@@ -67,17 +68,5 @@ class GameOverFragment : Fragment() {
 
     private fun retryGame() {
         findNavController().popBackStack()
-    }
-
-    companion object {
-        private const val KEY_RESULTS = "results"
-
-        fun newInstance(results: Results): GameOverFragment {
-            return GameOverFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_RESULTS, results)
-                }
-            }
-        }
     }
 }
