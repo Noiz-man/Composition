@@ -9,7 +9,4 @@ data class Results(
     val countOfRightAnswers: Int,
     val countOfQuestions: Int,
     val settings: Settings,
-) : Parcelable {
-    val countOfRightAnswersString: String
-        get() = countOfRightAnswers.toString()
-}
+) : Parcelable

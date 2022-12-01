@@ -34,31 +34,7 @@ class GameOverFragment : Fragment() {
         binding.btnRestart.setOnClickListener {
             retryGame()
         }
-        setOnViews()
-
-    }
-
-    private fun setOnViews() {
         binding.dataResults = args.results
-        with(binding) {
-//            tvNeedAnswers.text = String.format(getString(R.string.NeedCountOfRightAnswers),
-//                args.results.settings.minCountOfRightAnswers)
-            ivGameOver.setImageResource(if (args.results.winner) {
-                R.drawable.goodsmile
-            } else R.drawable.badsmile)
-//            tvRightAswers.text = String.format(getString(R.string.CountOfRightAnswers),
-//                args.results.countOfRightAnswers)
-//            tvNeedPercent.text = String.format(getString(R.string.NeedPercentsOfRightAnswers),
-//                args.results.settings.minPercentOfRightAnswers)
-            tvRightPercent.text = String.format(getString(R.string.PercentOfRightAnswers),
-                getPecentage())
-        }
-
-    }
-
-    private fun getPecentage():Int {
-        return ((args.results.countOfRightAnswers / args.results.countOfQuestions.toDouble()) * 100).toInt()
-
     }
 
     override fun onDestroyView() {
