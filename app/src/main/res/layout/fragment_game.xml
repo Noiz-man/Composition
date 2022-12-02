@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="dataViewModel"
+            type="com.example.composition.presentation.GameViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,8 +16,8 @@
         android:id="@+id/tv_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/time"
-        android:textSize="34dp"
+        android:text="@{dataViewModel.formattedTime}"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,9 +29,9 @@
         android:layout_marginTop="144dp"
         android:background="@drawable/oval"
         android:gravity="center"
-        android:text="@string/sum"
+        app:numberAsText="@{dataViewModel.question.sum}"
         android:textColor="@color/white"
-        android:textSize="60dp"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +41,7 @@
         android:id="@+id/tv_Summand"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:text="@string/sumand"
+        app:numberAsText="@{dataViewModel.question.visibleNumber}"
         style="@style/QuestionTextStyle"
         android:background="@android:color/holo_green_dark"
         app:layout_constraintDimensionRatio="1:1"
@@ -63,7 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/current_result"
+        android:text="@{dataViewModel.progresAnswers}"
+        app:enoughCount="@{dataViewModel.enoughCountOfRightAnswers}"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -73,7 +79,10 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
+        android:progress="@{dataViewModel.percentOfRightAnswers}"
+        android:secondaryProgress="@{dataViewModel.minPercent}"
         style="?android:attr/progressBarStyleHorizontal"
+        app:enoughPercents="@{dataViewModel.enoughPercentOfRightAnswers}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -108,7 +117,8 @@
                 android:background="@android:color/holo_green_dark"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/one_answer" />
+                app:onOptionclicklistener="@{(option) -> dataViewModel.chooseAnswer(option)}"
+                android:text="@{dataViewModel.question.option.get(0).toString()}" />
 
             <TextView
                 android:id="@+id/tv_answer2"
@@ -119,7 +129,8 @@
                 android:background="@android:color/holo_red_light"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/two_answer" />
+                android:text="@{dataViewModel.question.option.get(1).toString()}"
+                app:onOptionclicklistener="@{(option) -> dataViewModel.chooseAnswer(option)}" />
 
             <TextView
                 android:id="@+id/tv_answer3"
@@ -130,7 +141,8 @@
                 android:background="@android:color/holo_orange_light"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/three_answer" />
+                android:text="@{dataViewModel.question.option.get(2).toString()}"
+                app:onOptionclicklistener="@{(option) -> dataViewModel.chooseAnswer(option)}" />
         </TableRow>
 
         <TableRow
@@ -147,7 +159,8 @@
                 android:background="@android:color/holo_blue_light"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/four_answer" />
+                android:text="@{dataViewModel.question.option.get(3).toString()}"
+                app:onOptionclicklistener="@{(option) -> dataViewModel.chooseAnswer(option)}" />
 
             <TextView
                 android:id="@+id/tv_answer5"
@@ -158,7 +171,8 @@
                 android:background="@android:color/holo_purple"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/five_answer" />
+                android:text="@{dataViewModel.question.option.get(4).toString()}"
+                app:onOptionclicklistener="@{(option) -> dataViewModel.chooseAnswer(option)}" />
 
             <TextView
                 android:id="@+id/tv_answer6"
@@ -169,7 +183,8 @@
                 android:background="@android:color/holo_red_dark"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/six_answer" />
+                android:text="@{dataViewModel.question.option.get(5).toString()}"
+                app:onOptionclicklistener="@{(option) -> dataViewModel.chooseAnswer(option)}" />
         </TableRow>
 
     </TableLayout>

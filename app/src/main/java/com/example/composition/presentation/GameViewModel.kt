@@ -14,8 +14,10 @@ import com.example.composition.domain.entity.Settings
 import com.example.composition.domain.UseCases.GenerateQuestionUseCase
 import com.example.composition.domain.UseCases.GetSettingsUseCase
 
-class GameViewModel(private val level: Level,
-                    private val application: Application) : ViewModel() {
+class GameViewModel(
+    private val level: Level,
+    private val application: Application,
+) : ViewModel() {
 
     private lateinit var settings: Settings
     private val repository = RepositiryImpl
@@ -69,7 +71,10 @@ class GameViewModel(private val level: Level,
 
     private fun percentOfRightAnswers() {
         val minCountAnswers = settings.minCountOfRightAnswers
-        val percent = ((countOfRightAnswers / countOfQuestions.toDouble()) * PERCENTS).toInt()
+        var percent = 0
+        if (countOfQuestions != 0) {
+            percent = (countOfRightAnswers / countOfQuestions.toDouble() * PERCENTS).toInt()
+        }
         _percentOfRightAnswers.value = percent
         _progresAnswers.value = String.format(application.resources.getString(
             R.string.progresACountAnswers), countOfRightAnswers, minCountAnswers)
